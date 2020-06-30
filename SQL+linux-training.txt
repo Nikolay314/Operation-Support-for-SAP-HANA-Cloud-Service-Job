@@ -1,0 +1,206 @@
+SQL Practice:
+1.
+Given the following data definition.
+
+TABLE students
+   id INTEGER PRIMARY KEY,
+   firstName VARCHAR(30) NOT NULL,
+   lastName VARCHAR(30) NOT NULL
+
+points: 1
+Write a query that returns the number of students whose first name is John.
+
+Answer:
+select count(*) from students where firstName = 'John';
+
+
+
+2.
+Each item in a web shop belongs to a seller. To ensure service quality, each seller has a rating.
+
+The data are kept in the following two tables:
+
+TABLE sellers
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  rating INTEGER NOT NULL
+
+TABLE items
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  sellerId INTEGER REFERENCES sellers(id)
+
+Write a query that selects the item name and the name of its seller for each item that belongs to a seller with a rating greater than 4.
+
+Answer:
+select items.name, sellers.name from items
+join sellers on items.sellerId = sellers.id
+where sellers.rating > 4;
+
+Points: 2
+
+
+
+
+3.
+Information about pets is kept in two separate tables:
+
+TABLE dogs
+  id INTEGER NOT NULL PRIMARY KEY,
+  name VARCHAR(50) NOT NULL
+
+TABLE cats
+  id INTEGER NOT NULL PRIMARY KEY,
+  name VARCHAR(50) NOT NULL
+
+Write a query that select all distinct pet names.
+
+Answer:
+
+select name from dogs
+union
+select name from cats;
+
+Points: 2
+
+
+
+4.
+A table containing the students enrolled in a yearly course has incorrect data in records with ids between 20 and 100 (inclusive).
+
+TABLE enrollments
+  id INTEGER NOT NULL PRIMARY KEY
+  year INTEGER NOT NULL
+  studentId INTEGER NOT NULL
+
+Write a query that updates the field 'year' of every faulty record to 2015.
+
+Answer:
+update  enrollments set year = 2015 where id >= 20 and id <= 100;
+
+Points: 3
+
+
+
+5.
+Each item in a web shop belongs to a seller. To ensure service quality, each seller has a rating.
+
+The data are kept in the following two tables:
+
+TABLE sellers
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  rating INTEGER NOT NULL
+
+TABLE items
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  sellerId INTEGER REFERENCES sellers(id)
+Write a query that selects the item name and the name of its seller for each item that belongs to a seller with a rating greater than 4.
+
+Answer:
+select items.name, sellers.name from items
+join sellers on items.sellerId = sellers.id
+where sellers.rating > 4;
+
+Points: 3
+
+
+
+Linux Practice:
+
+Write a single command that will make existing file secret.txt readable and writeable only for the user, readable only for the group and with no permission for the rest
+Points: 1
+
+chmod 640 secret.txt
+
+
+Write a command to find all of the files which have been accessed within the last 30 days
+
+Answer:
+find / -atime -30
+
+Points: 1
+
+
+Write a command to find all of the files which have been modified after a certain file was modified in a given folder
+Tip: Use find
+Points: 1
+
+
+
+Find the biggest file on the file system.
+Points: 1
+
+Answer:
+du -a / | sort -n -r | head -n 20
+
+du calculates the files sizes in the home directory which will then go through a “sort” operation and finally the output will be limited thanks to the “head” argument which considers only the top 20 largest files.
+In order to display the directories with the biggest sizes in the current working folder, just run:
+sudo du -a | sort -n -r | head -n 10
+
+
+List all open ports
+Points: 1
+Answer:
+netstat -tulpn
+
+
+List the processes:
+ a. that use the most cpu
+Answer: 
+ps -eo pid,cmd,%cpu --sort=-%cpu
+
+ a. that use the most memory
+Answer:
+ps -eo pid,cmd,%mem --sort=-%mem
+
+ a. that use the most i.o
+Answer:
+iotop 
+Points: 2
+
+
+Concatenate several text files and count how many times there is a line containing the separate word "jabra"
+Tip: Use cat and wc
+Points: 2
+Answer:
+cat file file1 file3|grep -i -o jabra|wc -l
+
+Write two commands. The first one creates directories server0, server1, ..... server9, and the second changes their permissions: user has full access, group can only see what is in the dir, but can't create or delete files, others has no rights
+Tip: Use shell expansions
+Points: 2
+
+Answer:
+mkdir server0 server1 server2 server3 server4 server5 server6 server7 server8 server9
+chmod 740 server0 server1 server2 server3 server4 server5 server6 server7 server8 server9
+
+
+Write a command that finds all .txt files under a given folder and copies them to a new location by preserving their paths. For example if the file is located at /oldpath/somewhere/some/file.txt it should be located in /newpath/somewhere/some/file.txt.
+Points: 2
+
+
+Write a command that counts how many times a given word is encountered in a file.
+Points: 2
+Answer:
+cat [file]| grep -i -o [word]|wc -l
+
+Write a command that counts how many different users own files in directory ./training.
+Points: 2
+
+
+Write a command that parses the output of ip addr linux command and returns the ip address
+Points 3
+
+
+Create user1 and user2 on a Linux machine. They should not be added in any root level access groups.
+  a) Create a directory test1 in the user1 home directory also create a file/s in it. The permissions should be set so user2 can modify the user1 file/s, create new ones but is unable files owned by user1.
+  b) Create a directory test2 in the user1 home directory. The permissions should be set so user2 can create modify files in it but all of the files in the directory that are created by user2 should be created under the user1 group
+Points: 4
+
+
+Create a public git repository with a provider of your choice and upload all the answers using the command line only.
+Points: 5
+Done:
+
+# Operation-Support-for-SAP-HANA-Cloud-Service-Job
